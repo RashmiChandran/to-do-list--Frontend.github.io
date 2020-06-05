@@ -1,0 +1,16 @@
+.dueTime{
+    display: flex;
+    position: absolute;
+    right: 10%;
+    align-items: center;
+}
+:host ::ng-deep .mat-list-text{
+    display: grid !important;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 1fr;
+    vertical-align: middle;
+    align-items: center;
+}
+mat-card{
+    margin: 0px 30px;
+}
