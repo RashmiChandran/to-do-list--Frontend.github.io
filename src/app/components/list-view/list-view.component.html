@@ -2,30 +2,8 @@
 <mat-card class="todocard">
     <mat-list role="list">
         <mat-selection-list>
-            <mat-list-option checkboxPosition="before">
-                Item 1
-                <mat-chip-list>
-                    <mat-chip color="primary">Papadum</mat-chip>
-                </mat-chip-list>
-                <div class="dueTime">
-                    <mat-icon matListIcon>av_timer</mat-icon>
-                    <span>Tomorrow, 1pm</span>
-                </div>
-                <mat-icon matListIcon>more_vert</mat-icon>
-            </mat-list-option>
-            <mat-list-option checkboxPosition="before">
-                Item 2
-                <mat-chip-list>
-                    <mat-chip color="primary">Papadum</mat-chip>
-                </mat-chip-list>
-                <div class="dueTime">
-                    <mat-icon matListIcon>av_timer</mat-icon>
-                    <span>Tomorrow, 1pm</span>
-                </div>
-                <mat-icon matListIcon>more_vert</mat-icon>
-            </mat-list-option>
-            <mat-list-option checkboxPosition="before">
-                Item 3
+            <mat-list-option checkboxPosition="before" *ngFor="let task of taskList">
+                {{task.quote}}
                 <mat-chip-list>
                     <mat-chip color="primary">Papadum</mat-chip>
                 </mat-chip-list>

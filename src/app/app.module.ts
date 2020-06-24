@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatChipsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

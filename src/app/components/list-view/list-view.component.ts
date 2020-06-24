@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListViewService } from './list-view.service';
 
 @Component({
   selector: 'app-list-view',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-view.component.scss']
 })
 export class ListViewComponent implements OnInit {
-
-  constructor() { }
+  public taskList: any =[];
+  constructor(private listViewService: ListViewService) { }
 
   ngOnInit(): void {
+    this.listViewService.getTaskList().subscribe((taskList)=>{
+      this.taskList = taskList;
+    });
   }
 
 }
