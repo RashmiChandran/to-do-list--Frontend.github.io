@@ -1,17 +1,24 @@
 <mat-toolbar>To do list:</mat-toolbar>
 <mat-card class="todocard">
+    <button mat-flat-button color="primary" (click)="openAddTaskDialog()"> <button mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>Add Task</button>
     <mat-list role="list">
         <mat-selection-list>
             <mat-list-option checkboxPosition="before" *ngFor="let task of taskList">
-                {{task.quote}}
+                {{task.taskName}}
                 <mat-chip-list>
-                    <mat-chip color="primary">Papadum</mat-chip>
+                    <mat-chip color="primary">{{task.label}}</mat-chip>
                 </mat-chip-list>
                 <div class="dueTime">
                     <mat-icon matListIcon>av_timer</mat-icon>
-                    <span>Tomorrow, 1pm</span>
+                    <span>{{task.duration | date: 'dd-MMM-yyyy'}}</span>
                 </div>
-                <mat-icon matListIcon>more_vert</mat-icon>
+                <mat-icon matListIcon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="updateTask(task)">Edit</button>
+                <button mat-menu-item (click)="deleteTask(task)">Delete</button>
+                </mat-menu>
             </mat-list-option>
         </mat-selection-list>
     </mat-list>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-task',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-task.component.scss']
 })
 export class AddTaskComponent implements OnInit {
+  public addTaskForm: FormGroup;
+  public labelOptions = ["Personal", "Health", "Work", "Others"]
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.addTaskForm = this.formBuilder.group({
+      _id: [this.data ? this.data._id : '', Validators.required],
+      taskName: [this.data ? this.data.taskName : '', Validators.required],
+      label: [this.data ? this.data.label :  '', Validators.required],
+      duration: [this.data ? this.data.duration : '', Validators.required],
+      status: [this.data ? this.data.status : 'new', Validators.required]
+    });
+  }
+
+  saveTask(){
+    this.dialogRef.close(this.addTaskForm.value);
+  }
 }
