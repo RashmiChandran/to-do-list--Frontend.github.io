@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-
+import { environment as env } from '../../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
 export class ListViewService {
-  public taskListURL = "http://localhost:3000/";
-  public addNewTaskURL = "http://localhost:3000/addTask";
-  public deleteTaskURL = "http://localhost:3000/deleteTask/";
-  public updateTaskURL = "http://localhost:3000/updateTask/";
+  public taskListURL = env.url;
+  public addNewTaskURL = env.url + "addTask";
+  public deleteTaskURL = env.url + "deleteTask/";
+  public updateTaskURL = env.url + "updateTask/";
   constructor(private http: HttpClient) { }
   
   public getTaskList(){
