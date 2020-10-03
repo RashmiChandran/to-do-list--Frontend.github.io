@@ -1,12 +1,11 @@
 <h1>Add Task</h1>
-<p>Tackle your goals in daily doses.</p>
-<div id="addTaskFormField">
-    <form [formGroup]="addTaskForm">
-        <mat-form-field appearance="outline">
-            <mat-label>Name the task</mat-label>
+<div>
+    <form [formGroup]="addTaskForm" class="addTaskFormField">
+        <mat-form-field appearance="standard">
+            <mat-label>Enter task name</mat-label>
             <input matInput placeholder="Placeholder" formControlName="taskName">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="standard">
             <mat-label>Label</mat-label>
             <mat-select formControlName="label">
                 <mat-option *ngFor="let label of labelOptions" [value]="label">
@@ -14,14 +13,14 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="standard">
             <mat-label>Choose a end date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="duration">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <div>
-            <button mat-raised-button color="primary" (click)="saveTask()">Save Task</button>
+            <button mat-raised-button color="primary" [disabled]="!addTaskForm.valid" (click)="saveTask()">Save Task</button>
         </div>
     </form>
 </div>

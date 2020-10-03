@@ -23,11 +23,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
     ListViewComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

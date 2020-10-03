@@ -10,6 +10,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 })
 export class ListViewComponent implements OnInit {
   public taskList: any =[];
+  public showLoadingSpinner: boolean = true;
   constructor(private listViewService: ListViewService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -17,6 +18,7 @@ export class ListViewComponent implements OnInit {
   }
   public getTaskList(){
     this.listViewService.getTaskList().subscribe((taskList)=>{
+      this.showLoadingSpinner = false;
       this.taskList = taskList;
     });
   }
@@ -28,18 +30,17 @@ export class ListViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(newTask => {
       if(newTask){
+        this.showLoadingSpinner = true;
         this.listViewService.postNewTask(newTask).subscribe((res)=>{
-          console.log(res)
-          this.getTaskList();
+           this.getTaskList();
         });
       }      
     });
   }
 
   deleteTask(task){
-    console.log(task)
     this.listViewService.deleteTask(task).subscribe((taskList)=>{
-      console.log(taskList)
+      this.showLoadingSpinner = true;
       this.getTaskList();
     });
   }
@@ -52,9 +53,8 @@ export class ListViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(newTask => {
       if(newTask){
-        console.log("Updating")
+        this.showLoadingSpinner = true;
         this.listViewService.updateTask(newTask).subscribe((res)=>{
-          console.log(res)
           this.getTaskList();
         });
       }      

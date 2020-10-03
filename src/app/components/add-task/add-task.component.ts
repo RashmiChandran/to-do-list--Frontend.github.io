@@ -16,11 +16,11 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.addTaskForm = this.formBuilder.group({
-      _id: [this.data ? this.data._id : '', Validators.required],
+      _id: [this.data ? this.data._id : ''],
       taskName: [this.data ? this.data.taskName : '', Validators.required],
       label: [this.data ? this.data.label :  '', Validators.required],
       duration: [this.data ? this.data.duration : '', Validators.required],
-      status: [this.data ? this.data.status : 'new', Validators.required]
+      status: [this.data ? this.data.status : 'new']
     });
   }
 
