@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListViewService } from './list-view.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
@@ -11,15 +11,22 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 export class ListViewComponent implements OnInit {
   public taskList: any =[];
   public showLoadingSpinner: boolean = true;
+  public finishedTaskList = [];
   constructor(private listViewService: ListViewService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTaskList();
+    
   }
   public getTaskList(){
-    this.listViewService.getTaskList().subscribe((taskList)=>{
+    this.listViewService.getTaskList().subscribe((taskList: any)=>{
       this.showLoadingSpinner = false;
-      this.taskList = taskList;
+      this.taskList = taskList.filter((item)=>{
+        return item.status == 'new'
+      });
+      this.finishedTaskList = taskList.filter((item)=>{
+        return item.status == 'completed'
+      });
     });
   }
 
@@ -61,4 +68,10 @@ export class ListViewComponent implements OnInit {
     });
   }
 
+  finishedTask(task){
+    task.status = task.status == "new" ? "completed" : "new";    
+    this.listViewService.updateTask(task).subscribe((res)=>{
+      this.getTaskList();
+    });
+  }
 }

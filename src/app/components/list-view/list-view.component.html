@@ -5,7 +5,7 @@
       </button>Add Task</button>
     <mat-list role="list">
         <mat-selection-list>
-            <mat-list-option checkboxPosition="before" *ngFor="let task of taskList">
+            <mat-list-option checkboxPosition="before" *ngFor="let task of taskList" [value]="task" (click)="finishedTask(task)">
                 {{task.taskName}}
                 <mat-chip-list>
                     <mat-chip color="primary">{{task.label}}</mat-chip>
@@ -21,6 +21,17 @@
                 </mat-menu>
             </mat-list-option>
         </mat-selection-list>
+        <div *ngIf="finishedTaskList.length > 0">
+        <h3 matSubheader>Finished task</h3>
+        <mat-selection-list>
+            <mat-list-option checkboxPosition="before" selected="true" class="finished-task-list" *ngFor="let task of finishedTaskList" [value]="task" (click)="finishedTask(task)">
+                {{task.taskName}}
+                <mat-chip-list>
+                    <mat-chip color="primary">{{task.label}}</mat-chip>
+                </mat-chip-list>
+            </mat-list-option>
+        </mat-selection-list>
+       </div>
     </mat-list>
 </mat-card>
 <loading-spinner *ngIf="showLoadingSpinner"></loading-spinner>
